@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <title>Gcd Finder</title>
+</head>
+
+<body>
+    <div id="app" class="container">
+        <div class="item">
+            <div class="navbar">
+                <button @click="a = up(a)">
+                    <span class="material-icons">
+                        expand_less
+                    </span>
+                </button>
+                <div class="result">{{a}}</div>
+                <button @click="a = down(a)">
+                    <span class="material-icons">
+                        expand_more
+                    </span>
+                </button>
+
+            </div>
+        </div>
+        <div class="item">
+            <div class="navbar">
+                <button @click="b = up(b)">
+                    <span class="material-icons">
+                        expand_less
+                    </span>
+                </button>
+                <div class="result">{{b}}</div>
+                <button @click="b = down(b)">
+                    <span class="material-icons">
+                        expand_more
+                    </span>
+                </button>
+
+            </div>
+        </div>
+
+        <div class="item">
+            {{ ebob(a,b) }}
+        </div>
+
+    </div>
+</body>
+
+</html>
+<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+
+<script>
+    const { createApp } = Vue
+    createApp({
+        data() {
+            return {
+                a: 0,
+                b: 0
+            }
+        },
+        methods: {
+            up(element) {
+                return element + 1
+            },
+            down(element) {
+                return element - 1
+            },
+            ebob(a, b) {
+                let small = a > b ? b : a
+                let big = a > b ? a : b
+                let ebob = 0
+                for (let index = 0; index <= small; index++) {
+                    if (small % index == 0 & big % index == 0) {
+                        ebob = index
+                    }
+                }
+                return ebob
+            }
+        },
+    }).mount('#app')
+</script>
+<style>
+    .item {
+        text-align: center;
+        margin-top: 20px;
+        margin-bottom: 20px;
+    }
+
+    .result {
+        margin-left: 20px;
+        margin-right: 20px;
+    }
+</style>
